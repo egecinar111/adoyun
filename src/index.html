@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Flappy Ads</title>
+    <style>
+      html, body { height: 100%; margin: 0; background:#0e0f12; color:#fff; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+      #wrap { display:flex; align-items:center; justify-content:center; height:100%; }
+      canvas { background:#1a1c22; border:2px solid #262a33; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.4); }
+      .hud { position: fixed; top: 10px; left: 50%; transform: translateX(-50%); display:flex; gap:8px; }
+      .btn { background:#2c3140; border:1px solid #3a4052; padding:8px 12px; border-radius:8px; color:#fff; cursor:pointer; }
+      .btn:active{ transform:translateY(1px); }
+      #overlay { position: fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.55); backdrop-filter: blur(2px); visibility: hidden; opacity:0; transition:.2s; }
+      #overlay.show { visibility: visible; opacity: 1; }
+      #card { background:#1b1f28; padding:16px; border-radius:12px; width: min(90vw, 360px); border:1px solid #2b3140; }
+      #card h2{ margin:.2rem 0 1rem; font-size:1.1rem }
+      #card .grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+      #score { position: fixed; top: 10px; right: 12px; opacity:.85; }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <canvas id="game" width="360" height="640"></canvas>
+    </div>
+
+    <div class="hud">
+      <button id="btnStart" class="btn">Başla / Zıpla (👆)</button>
+      <button id="btnPause" class="btn">Duraklat</button>
+    </div>
+
+    <div id="score">Skor: <b id="sc">0</b></div>
+
+    <div id="overlay">
+      <div id="card">
+        <h2>Oyun Bitti</h2>
+        <p>Skorun: <b id="final"></b></p>
+        <div class="grid">
+          <button id="btnRetry" class="btn">Tekrar</button>
+          <button id="btnReward" class="btn">Reklam İzle + Devam</button>
+        </div>
+        <p style="margin-top:12px; font-size:.85rem; opacity:.8">
+          Not: Ödüllü reklamlar gönüllüdür; interstitial reklam en fazla ara ara gösterilir.
+        </p>
+      </div>
+    </div>
+
+    <script type="module" src="./ads.js"></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
